@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using MatrixLib;
+using MatrixCalculation;
 
 namespace MatrixApp
 {
@@ -20,13 +20,11 @@ namespace MatrixApp
 
         private void CreateMatrices_Click(object sender, RoutedEventArgs e)
         {
-            // Получение размеров матриц от пользователя
             int m1 = int.Parse(RowsMatrixATextBox.Text);
             int n1 = int.Parse(ColsMatrixATextBox.Text);
             int m2 = int.Parse(RowsMatrixBTextBox.Text);
             int n2 = int.Parse(ColsMatrixBTextBox.Text);
 
-            // Создаем пустые матрицы с заданными размерами
             _matrixA = new Matrix<double>(m1, n1);
             _matrixB = new Matrix<double>(m2, n2);
 
@@ -52,10 +50,9 @@ namespace MatrixApp
 
         private void DisplayMatrix(Matrix<double> matrix, ItemsControl control)
         {
-            control.Items.Clear();  // Очищаем текущие элементы ItemsControl
+            control.Items.Clear();
             var grid = new Grid();
 
-            // Добавляем строки и столбцы в Grid
             for (int i = 0; i < matrix.Rows; i++)
             {
                 grid.RowDefinitions.Add(new RowDefinition());
@@ -66,7 +63,6 @@ namespace MatrixApp
                 grid.ColumnDefinitions.Add(new ColumnDefinition());
             }
 
-            // Заполняем Grid текстовыми полями для каждой ячейки матрицы
             for (int i = 0; i < matrix.Rows; i++)
             {
                 for (int j = 0; j < matrix.Cols; j++)
@@ -83,18 +79,15 @@ namespace MatrixApp
                     grid.Children.Add(textBox);
                 }
             }
-
-            // Добавляем созданный Grid в ItemsControl как единственный элемент
             control.Items.Add(grid);
         }
 
-
-        private void UpdateMatrixFromUI(Matrix<double> matrix, ItemsControl control)
+        private void UpdateMatrix(Matrix<double> matrix, ItemsControl control)
         {
             if (control.Items.Count == 0)
                 return;
 
-            var grid = control.Items[0] as Grid;  // Получаем Grid из ItemsControl
+            var grid = control.Items[0] as Grid;
             for (int i = 0; i < matrix.Rows; i++)
             {
                 for (int j = 0; j < matrix.Cols; j++)
@@ -102,7 +95,6 @@ namespace MatrixApp
                     var textBox = grid.Children[i * matrix.Cols + j] as TextBox;
                     string input = textBox.Text.Trim();
 
-                    // Пробуем парсить с учетом текущей культуры
                     if (double.TryParse(input, NumberStyles.Any, CultureInfo.CurrentCulture, out double value))
                     {
                         matrix[i, j] = value;
@@ -116,8 +108,6 @@ namespace MatrixApp
             }
         }
 
-
-
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
             if (_matrixA == null || _matrixB == null)
@@ -126,11 +116,10 @@ namespace MatrixApp
                 return;
             }
 
-            // Обновляем матрицы с учетом изменений в UI
-            UpdateMatrixFromUI(_matrixA, MatrixAControl);
-            UpdateMatrixFromUI(_matrixB, MatrixBControl);
+            UpdateMatrix(_matrixA, MatrixAControl);
+            UpdateMatrix(_matrixB, MatrixBControl);
 
-            if (OperationComboBox.SelectedIndex == 0) // Сложение
+            if (OperationComboBox.SelectedIndex == 0)
             {
                 if (_matrixA.Rows == _matrixB.Rows && _matrixA.Cols == _matrixB.Cols)
                 {
@@ -145,7 +134,7 @@ namespace MatrixApp
                     MessageBox.Show("Размеры матриц должны совпадать для сложения.");
                 }
             }
-            else if (OperationComboBox.SelectedIndex == 1) // Умножение
+            else if (OperationComboBox.SelectedIndex == 1)
             {
                 if (_matrixA.Cols == _matrixB.Rows)
                 {
@@ -161,7 +150,6 @@ namespace MatrixApp
                 }
             }
         }
-
 
         private void SaveResult_Click(object sender, RoutedEventArgs e)
         {

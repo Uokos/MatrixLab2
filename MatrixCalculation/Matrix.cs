@@ -1,8 +1,6 @@
-﻿using System;
-using System.Globalization;
-using System.IO;
+﻿using System.Globalization;
 
-namespace MatrixLib
+namespace MatrixCalculation
 {
     public class Matrix<T> where T : struct
     {
@@ -10,7 +8,6 @@ namespace MatrixLib
         public int Rows { get; }
         public int Cols { get; }
 
-        // Конструктор для произвольных размеров матриц
         public Matrix(int rows, int cols)
         {
             Rows = rows;
@@ -18,14 +15,12 @@ namespace MatrixLib
             _data = new T[rows, cols];
         }
 
-        // Индексатор для доступа к элементам матрицы
         public T this[int row, int col]
         {
             get => _data[row, col];
             set => _data[row, col] = value;
         }
 
-        // Метод для генерации матрицы по делегату
         public void Generate(Func<int, int, T> generator)
         {
             for (int i = 0; i < Rows; i++)
@@ -33,7 +28,6 @@ namespace MatrixLib
                     _data[i, j] = generator(i, j);
         }
 
-        // Пример перегрузки оператора + для сложения матриц
         public static Matrix<T> operator +(Matrix<T> a, Matrix<T> b)
         {
             if (a.Rows != b.Rows || a.Cols != b.Cols)
@@ -47,7 +41,6 @@ namespace MatrixLib
             return result;
         }
 
-        // Пример перегрузки оператора * для умножения матриц
         public static Matrix<T> operator *(Matrix<T> a, Matrix<T> b)
         {
             if (a.Cols != b.Rows)
@@ -65,8 +58,6 @@ namespace MatrixLib
 
             return result;
         }
-
-        // Метод для сохранения матрицы в файл CSV
         public void SaveToCsv(string filePath)
         {
             using (var writer = new StreamWriter(filePath))
@@ -76,14 +67,10 @@ namespace MatrixLib
                     var row = new List<string>();
                     for (int j = 0; j < Cols; j++)
                     {
-                        // Округляем значение до двух знаков после запятой
-                        double value = Convert.ToDouble(this[i, j]); // Приведение к double
-                        double roundedValue = Math.Round(value, 2);
-
-                        // Используем запятую как десятичный разделитель
-                        row.Add(roundedValue.ToString("F2", CultureInfo.InvariantCulture).Replace('.', ','));
+                        double value = Convert.ToDouble(this[i, j]);
+                        row.Add(value.ToString("F2", CultureInfo.InvariantCulture).Replace('.', ','));
                     }
-                    writer.WriteLine(string.Join(";", row)); // Используем ";" как разделитель столбцов
+                    writer.WriteLine(string.Join(";", row));
                 }
             }
         }

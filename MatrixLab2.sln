@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixLab2", "MatrixLab2\MatrixLab2.csproj", "{2850E9E7-1EA5-4536-B0DF-3374DD6D9395}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatrixLab2", "MatrixLab2\MatrixLab2.csproj", "{2850E9E7-1EA5-4536-B0DF-3374DD6D9395}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixCalculation", "MatrixCalculation\MatrixCalculation.csproj", "{D766E8A4-916C-4F1A-8BF6-7961982F4789}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{2850E9E7-1EA5-4536-B0DF-3374DD6D9395}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2850E9E7-1EA5-4536-B0DF-3374DD6D9395}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2850E9E7-1EA5-4536-B0DF-3374DD6D9395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D766E8A4-916C-4F1A-8BF6-7961982F4789}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D766E8A4-916C-4F1A-8BF6-7961982F4789}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D766E8A4-916C-4F1A-8BF6-7961982F4789}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D766E8A4-916C-4F1A-8BF6-7961982F4789}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
