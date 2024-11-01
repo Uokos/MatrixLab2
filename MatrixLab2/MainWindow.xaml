@@ -1,27 +1,25 @@
 ﻿<Window x:Class="MatrixApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Matrix Calculator" Height="500" Width="800">
+        Title="Калькулятор матриц. Оленичев 3-47" Height="500" Width="800">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="Размеры матриц:" />
+            <TextBlock Text="Размеры матриц:" Margin="10 5" />
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Матрица A (m1 x n1):" Margin="5"/>
+                <TextBlock Text="Матрица A:" Margin=" 10 5"/>
                 <TextBox x:Name="RowsMatrixATextBox" Width="40" Margin="5"/>
                 <TextBlock Text="x" VerticalAlignment="Center"/>
                 <TextBox x:Name="ColsMatrixATextBox" Width="40" Margin="5"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Матрица B (m2 x n2):" Margin="5"/>
+                <TextBlock Text="Матрица B:" Margin="10 5"/>
                 <TextBox x:Name="RowsMatrixBTextBox" Width="40" Margin="5"/>
                 <TextBlock Text="x" VerticalAlignment="Center"/>
                 <TextBox x:Name="ColsMatrixBTextBox" Width="40" Margin="5"/>
             </StackPanel>
 
-            <!-- Кнопка для создания пустых матриц -->
-            <Button Content="Создать матрицы" Click="CreateMatrices_Click" />
-            <!-- Кнопка для генерации случайных чисел -->
-            <Button Content="Заполнить случайными числами" Click="GenerateRandomValues_Click" />
+            <Button Content="Создать матрицы" Click="CreateMatrices_Click" Margin="10" Height="30"/>
+            <Button Content="Заполнить случайными числами" Click="GenerateRandomValues_Click" Margin="10 0" Height="30"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <ItemsControl x:Name="MatrixAControl" Margin="10" />
@@ -30,17 +28,17 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <TextBlock Text="Операция:" />
-                <ComboBox x:Name="OperationComboBox" Width="100" Margin="5">
+                <ComboBox x:Name="OperationComboBox" Width="100" Margin="10 0 0 0">
                     <ComboBoxItem Content="Сложение" />
                     <ComboBoxItem Content="Умножение" />
                 </ComboBox>
             </StackPanel>
 
-            <Button Content="Рассчитать" Click="Calculate_Click" />
+            <Button Content="Рассчитать" Click="Calculate_Click" Margin="10" Height="30"/>
 
             <ItemsControl x:Name="MatrixCControl" Margin="10" />
 
-            <Button Content="Сохранить результат" Click="SaveResult_Click" />
+            <Button Content="Сохранить результат" Click="SaveResult_Click" Margin="10" Height="30"/>
             <TextBlock x:Name="CalculationTimeTextBlock" Margin="10" />
         </StackPanel>
     </Grid>
