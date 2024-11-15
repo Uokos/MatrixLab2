@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MatrixCalculation
 {
@@ -14,6 +15,26 @@ namespace MatrixCalculation
             Cols = cols;
             _data = new T[rows, cols];
         }
+
+        public Matrix(T[,] values)
+        {
+            if (values == null)
+                throw new ArgumentNullException(nameof(values));
+
+            Rows = values.GetLength(0);
+            Cols = values.GetLength(1);
+
+            _data = new T[Rows, Cols];
+
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Cols; j++)
+                {
+                    _data[i, j] = values[i, j];
+                }
+            }
+        }
+
 
         public T this[int row, int col]
         {
